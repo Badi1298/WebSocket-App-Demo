@@ -7,7 +7,8 @@ console.log('WebSocket server running on ws://localhost:8080');
 server.on('connection', (socket) => {
 	console.log('Client connected');
 	socket.on('message', (message) => {
-		console.log('Received:', message);
+		const text = message.toString();
+		console.log('Received:', text);
 	});
 
 	// Send a message to the client
