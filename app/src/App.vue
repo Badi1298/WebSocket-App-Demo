@@ -1,8 +1,14 @@
 <template>
-	<h1>💖 Hello World!</h1>
-	<p>Welcome to your Electron application.</p>
+	<h1>Messages from Phone</h1>
+	<div id="messages">{{ messageFromPhone ? messageFromPhone : 'No messages yet...' }}</div>
 </template>
 
 <script setup>
-console.log('👋 This message is being logged by "App.vue", included via Vite');
+import { ref } from 'vue';
+
+const messageFromPhone = ref('');
+
+window.electronAPI.onMessageFromPhone((message) => {
+	messageFromPhone.value = message;
+});
 </script>

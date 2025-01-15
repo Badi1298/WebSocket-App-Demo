@@ -1,2 +1,5 @@
-// See the Electron documentation for details on how to use preload scripts:
-// https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('electronAPI', {
+	onMessageFromPhone: (callback) => ipcRenderer.on('message-from-phone', (event, message) => callback(message)),
+});
