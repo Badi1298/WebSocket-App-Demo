@@ -1,16 +1,19 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
-import { WebSocket } from 'ws';
+
+const WebSocket = require('ws');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
 	app.quit();
 }
 
+let mainWindow;
+
 const createWindow = () => {
 	// Create the browser window.
-	const mainWindow = new BrowserWindow({
+	mainWindow = new BrowserWindow({
 		width: 800,
 		height: 600,
 		webPreferences: {
@@ -36,7 +39,6 @@ app.whenReady().then(() => {
 	createWindow();
 
 	const server = new WebSocket.Server({ port: 8080 });
-	console.log('WebSocket server running on ws://localhost:8080');
 
 	server.on('connection', (socket) => {
 		console.log('Client connected');
@@ -44,7 +46,6 @@ app.whenReady().then(() => {
 		// When a message is received, send it to the renderer process
 		socket.on('message', (message) => {
 			const text = message.toString();
-			console.log('Received:', text);
 			mainWindow.webContents.send('message-from-phone', text);
 		});
 
