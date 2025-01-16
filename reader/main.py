@@ -3,7 +3,7 @@ import asyncio
 import websockets
 
 async def send_statue_id():
-    uri = "ws://192.168.58.117:8000"
+    uri = "ws://192.168.58.117:8080"
     async with websockets.connect(uri) as websocket:
         while True:
             statue_id = input("Enter statue identifier (e.g., statue_1): ")
