@@ -1,7 +1,7 @@
 <template>
 	<main class="container">
-		<h1>Messages from Phone</h1>
-		<div id="messages">{{ messageFromPhone ? messageFromPhone : 'No messages yet...' }}</div>
+		<h1 class="title">Messages from Phone</h1>
+		<div class="messages">{{ messageFromPhone ? messageFromPhone : 'No messages yet...' }}</div>
 	</main>
 </template>
 
@@ -22,5 +22,15 @@ window.electronAPI.onMessageFromPhone((message) => {
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.title {
+	font-size: 3rem;
+}
+
+.messages {
+	margin-top: 20px;
+	font-size: 1.5rem;
 }
 </style>
