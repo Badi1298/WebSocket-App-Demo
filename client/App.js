@@ -15,7 +15,6 @@ export default function App() {
 		};
 
 		socket.onmessage = (event) => {
-			console.log('Message from server:', event.data);
 			setReceivedMessage(event.data);
 		};
 
